@@ -1,0 +1,192 @@
+/*! withnate-contrast-checker v0.1.0 - MIT
+ * https://github.com/N-Graves/withnate-contrast-checker#readme
+ * Runs entirely in the browser. No network requests, no storage.
+ */
+/* src/style.css */
+.cc {
+  --cc-line: rgba(51, 23, 11, 0.14);
+  --cc-line-soft: rgba(51, 23, 11, 0.07);
+  --cc-pass: #2f6b52;
+  --cc-fail: #832305;
+  --cc-warn: #8a5a10;
+  display: grid;
+  gap: 1.25rem;
+}
+.cc-fields {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 620px) {
+  .cc-fields {
+    grid-template-columns: 1fr auto 1fr;
+    align-items: end;
+  }
+}
+.cc-field {
+  display: grid;
+  gap: 0.35rem;
+}
+.cc-field > span {
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+.cc-entry {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.cc-entry input[type=text] {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--cc-line);
+  border-radius: 10px;
+  font: inherit;
+  font-family:
+    ui-monospace,
+    "SF Mono",
+    monospace;
+  background: transparent;
+  color: inherit;
+}
+.cc-entry input[type=text].is-invalid {
+  border-color: var(--cc-fail);
+  box-shadow: 0 0 0 3px rgba(131, 35, 5, 0.14);
+}
+.cc-entry input[type=color] {
+  flex: 0 0 auto;
+  width: 2.6rem;
+  height: 2.6rem;
+  padding: 0;
+  border: 1px solid var(--cc-line);
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+}
+.cc-swap {
+  align-self: end;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--cc-line);
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.cc-headline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+.cc-ratio {
+  font-family:
+    ui-monospace,
+    "SF Mono",
+    monospace;
+  font-size: clamp(2rem, 7vw, 3rem);
+  line-height: 1;
+}
+.cc-ratio-label {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+.cc-note {
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  border-left: 3px solid var(--cc-warn);
+  background: rgba(138, 90, 16, 0.08);
+  border-radius: 0 10px 10px 0;
+  font-size: 0.92rem;
+}
+.cc-results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+.cc-result {
+  display: grid;
+  grid-template-columns: 4.2rem 1fr auto;
+  gap: 0.75rem;
+  align-items: baseline;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--cc-line-soft);
+  border-radius: 10px;
+}
+.cc-result-mark {
+  font-family:
+    ui-monospace,
+    "SF Mono",
+    monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.cc-result.is-pass .cc-result-mark {
+  color: var(--cc-pass);
+}
+.cc-result.is-fail .cc-result-mark {
+  color: var(--cc-fail);
+}
+.cc-result.is-fail {
+  border-color: rgba(131, 35, 5, 0.24);
+}
+.cc-result-body {
+  display: grid;
+  gap: 0.1rem;
+}
+.cc-result-label {
+  font-weight: 600;
+}
+.cc-result-detail {
+  font-size: 0.85rem;
+  opacity: 0.72;
+}
+.cc-result-threshold {
+  font-family:
+    ui-monospace,
+    "SF Mono",
+    monospace;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+.cc-preview {
+  padding: 1.2rem 1.4rem;
+  border: 1px solid var(--cc-line);
+  border-radius: 12px;
+}
+.cc-sample {
+  margin: 0 0 0.6rem;
+}
+.cc-sample-note {
+  margin: 0;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+.cc-suggest {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+}
+.cc-chip {
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--cc-line);
+  border-radius: 999px;
+  font: inherit;
+  font-family:
+    ui-monospace,
+    "SF Mono",
+    monospace;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.cc-extremes {
+  margin: 0;
+  font-size: 0.88rem;
+  opacity: 0.75;
+}

@@ -1,0 +1,33 @@
+{
+  "name": "withnate-contrast-checker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Check two colours against WCAG 2.2 AA and AAA, including the rounding trap. Runs entirely in the browser.",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "vitest run",
+    "lint": "tsc --noEmit",
+    "smoke": "npm run build && node scripts/smoke.mjs",
+    "demo": "npm run build && node scripts/serve.mjs"
+  },
+  "dependencies": {
+    "@nasdigitaluk/withnate-tool-core": "^0.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  },
+  "author": "Nathan Graves",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/N-Graves/withnate-contrast-checker.git"
+  },
+  "bugs": { "url": "https://github.com/N-Graves/withnate-contrast-checker/issues" },
+  "homepage": "https://github.com/N-Graves/withnate-contrast-checker#readme",
+  "keywords": ["wcag", "accessibility", "contrast", "colour", "browser", "client-side", "withnate"]
+}

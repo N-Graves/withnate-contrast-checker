@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contrast checker — With Nate</title>
+    <meta
+      name="description"
+      content="Check two colours against WCAG 2.2 AA and AAA. Runs entirely in your browser, and tells you when a ratio only looks like it passes."
+    />
+    <link rel="stylesheet" href="demo.css" />
+    <link rel="stylesheet" href="../dist/contrast-checker.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Contrast checker",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any browser",
+        "description": "Check two colours against WCAG 2.2 AA and AAA, including the rounding trap where a ratio displays as passing while genuinely failing. Runs entirely in the browser.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+        "featureList": [
+          "WCAG 2.2 AA and AAA verdicts for normal text, large text and interface elements",
+          "Warns when a rounded ratio disagrees with the real one",
+          "Honours alpha by compositing before measuring",
+          "Suggests the nearest colour of the same hue that passes",
+          "Runs entirely in the browser with no upload"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <main class="wrap">
+      <p class="eyebrow">Free tool</p>
+      <h1>Contrast checker</h1>
+      <p class="lede">
+        Type two colours and see whether they meet WCAG 2.2. It measures the real ratio rather than
+        the rounded one, which is the difference between a page that passes an audit and one that
+        only looks like it does.
+      </p>
+
+      <noscript>
+        <p class="cc-note">
+          This tool does its arithmetic in your browser, so it needs JavaScript switched on. Nothing
+          is uploaded either way.
+        </p>
+      </noscript>
+
+      <section class="cc glass" data-cc style="padding: clamp(1rem, 4vw, 2rem); border-radius: 16px">
+        <div class="cc-fields">
+          <label class="cc-field">
+            <span>Foreground — the text or icon</span>
+            <span class="cc-entry">
+              <input type="text" value="#007eb7" spellcheck="false" data-cc-fg />
+              <input type="color" value="#007eb7" aria-label="Pick a foreground colour" data-cc-fg-swatch />
+            </span>
+          </label>
+
+          <button type="button" class="cc-swap" data-cc-swap>Swap</button>
+
+          <label class="cc-field">
+            <span>Background — what it sits on</span>
+            <span class="cc-entry">
+              <input type="text" value="#ffffff" spellcheck="false" data-cc-bg />
+              <input type="color" value="#ffffff" aria-label="Pick a background colour" data-cc-bg-swatch />
+            </span>
+          </label>
+        </div>
+
+        <p class="cc-headline">
+          <span class="cc-ratio" data-cc-ratio>—</span>
+          <span class="cc-ratio-label">contrast ratio</span>
+        </p>
+
+        <p class="cc-note" data-cc-note hidden></p>
+
+        <ul class="cc-results" data-cc-results></ul>
+
+        <div class="cc-preview" data-cc-preview></div>
+
+        <p class="cc-suggest" data-cc-suggest hidden></p>
+
+        <p class="cc-extremes" data-cc-extremes></p>
+      </section>
+
+      <h2>What the numbers mean</h2>
+      <p>
+        WCAG 2.2 asks for at least 4.5:1 for body text and at least 3:1 for large text — 24px, or
+        18.66px when bold. Borders, icons, focus rings and chart strokes are covered separately by
+        SC 1.4.11, which also wants 3:1. AAA raises the text figures to 7:1 and 4.5:1.
+      </p>
+      <p>
+        The word doing the work is <strong>at least</strong>. A ratio of 4.4986 displays as 4.50 and
+        fails, and most checkers will show you the rounded figure and a green tick beside it. This
+        one compares the unrounded value, shows the rounded one, and says so plainly when the two
+        disagree.
+      </p>
+
+      <h2>Alpha</h2>
+      <p>
+        A semi-transparent colour is not the colour you typed — the browser blends it into whatever
+        is behind it before painting a single pixel. Pass an <code>rgba()</code> or an eight-digit
+        hex and it is composited first, so the ratio is the one a visitor actually sees.
+      </p>
+
+      <h2>Your colours never leave the page</h2>
+      <p>
+        Everything here is arithmetic done in your own browser. Nothing is uploaded, nothing is
+        stored, and the tool makes no network requests at all.
+      </p>
+    </main>
+
+    <script src="../dist/contrast-checker.js" defer></script>
+  </body>
+</html>
